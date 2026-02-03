@@ -7,9 +7,11 @@ import { DropoffConfirmationModal } from "@/components/features/dropoff-confirma
 import { QrCode, Camera, ArrowRight, X } from "lucide-react"
 import { toast } from "sonner"
 import { Logo } from "@/components/ui/logo"
+import { useAuth } from "@/context/auth-context"
 
 export default function ScanPage() {
     const router = useRouter()
+    const { user } = useAuth()
     const [mode, setMode] = useState<"menu" | "product_scan" | "bin_scan">("menu")
 
     // Bin Scan State
@@ -72,7 +74,7 @@ export default function ScanPage() {
                 const res = await fetch("/api/scan/analyze", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ image: imageData })
+                    body: JSON.stringify({ image: imageData, userId: user?._id })
                 })
 
                 const data = await res.json()

@@ -19,8 +19,20 @@ Create these in your deployment platform:
 # Database
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/ecodrop
 
+# AI Services
+GEMINI_API_KEY=AIzaSy...
+
 # Google Maps
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSy...
+
+# Email Service (Nodemailer)
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+
+# Security
+JWT_SECRET_KEY=your-secure-random-string
 
 # Optional: For production optimizations
 NODE_ENV=production
@@ -138,6 +150,11 @@ db.transactions.createIndex({ binId: 1 })
 // Users collection
 db.users.createIndex({ email: 1 }, { unique: true })
 ```
+
+## Default admin panel password
+
+- **Default Email**: `admin@ecodrop.com`
+- **Default Password**: `admin123`
 
 ## Monitoring
 

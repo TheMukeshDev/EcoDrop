@@ -5,7 +5,7 @@ import { ScanLog } from "@/models/ScanLog"
 
 export async function POST(req: NextRequest) {
     try {
-        const { image } = await req.json()
+        const { image, userId } = await req.json()
 
         if (!image) {
             return NextResponse.json({ success: false, error: "No image provided" }, { status: 400 })
@@ -17,14 +17,12 @@ export async function POST(req: NextRequest) {
         // 2. Log to Database (for "Scan Item" stats)
         await dbConnect()
 
-        // We'll trust the AI result, but if confidence is low, we might flag it
-        // Note: In a real app, we'd get the user ID from the session here
         await ScanLog.create({
             itemType: result.type,
             category: result.category,
             confidence: result.confidence,
             detectedAt: new Date(),
-            // userId: session?.user?.id 
+            userId: userId || undefined
         })
 
         return NextResponse.json({

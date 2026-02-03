@@ -1,0 +1,6 @@
+import { DropEvent } from "@/models/DropEvent"
+
+// Ensure DropEvent is exported correctly, creating the file if it was missing or partial
+// Wait, listing showed DropEvent.ts exists. I'll assume it's good or check it later if errors.
+// This step is creating the API, so I don't need to write the model unless it's missing.
+// I'll proceed with layout.

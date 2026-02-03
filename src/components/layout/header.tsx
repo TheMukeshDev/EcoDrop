@@ -1,24 +1,19 @@
 import { Share2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { Logo } from "@/components/ui/logo"
 
 import { LanguageSwitcher } from "@/components/ui/language-switcher"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 
 export function Header() {
     return (
-        <header className="sticky top-0 z-40 w-full glass border-b-0">
+        <header className="sticky top-0 z-40 w-full glass border-b-0 transition-colors duration-300">
             <div className="flex h-16 items-center justify-between px-6 max-w-md mx-auto">
-                <div className="flex items-center">
-                    <div className="relative h-9 w-32 shrink-0">
-                        <Image
-                            src="/header.svg"
-                            alt="EcoDrop"
-                            fill
-                            className="object-contain object-left brightness-0 invert"
-                            priority
-                        />
-                    </div>
+                <div className="flex items-center gap-2">
+                    <Logo className="w-8 h-8" />
+                    <span className="text-xl font-bold tracking-tight text-foreground transition-colors">
+                        Eco<span className="text-primary">Drop</span>
+                    </span>
                 </div>
                 <div className="flex items-center gap-3">
                     <ThemeToggle size="sm" />

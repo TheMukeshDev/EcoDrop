@@ -1,5 +1,4 @@
-
-import AdminSidebar from "@/components/admin/AdminSidebar"
+import AdminSidebar from "@/components/admin/admin-sidebar"
 
 export default function AdminLayout({
     children,
@@ -7,14 +6,10 @@ export default function AdminLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-secondary/20">
             <AdminSidebar />
-
-            {/* Main Content Area - Shifted right on desktop */}
-            <main className="md:ml-64 min-h-screen transition-all duration-300">
-                <div className="p-4 md:p-8 max-w-7xl mx-auto">
-                    {children}
-                </div>
+            <main className="pl-64 p-8">
+                {children}
             </main>
         </div>
     )
