@@ -3,7 +3,7 @@ import dbConnect from "@/lib/mongodb"
 import User from "@/models/User"
 import Transaction from "@/models/Transaction"
 import { ScanLog } from "@/models/ScanLog"
-import { DropEvent } from "@/models/DropEvent"
+import DropEvent from "@/models/DropEvent"
 
 export async function GET() {
     try {
