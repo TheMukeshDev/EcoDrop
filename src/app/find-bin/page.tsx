@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef, Suspense } from "react"
 import { useUserLocation } from "@/hooks/use-user-location"
 import { useEWDropVerification } from "@/hooks/use-ew-drop-verification"
 import { detectCityFromCoordinates } from "@/lib/city-detection"
@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button"
 // Fix for type mismatch between Mongoose Document and Client JSON
 type ClientBin = Omit<IBin, "_id"> & { _id: string }
 
-export default function FindBinPage() {
+function FindBinPageContent() {
     const { t } = useTranslation()
     const searchParams = useSearchParams()
     const router = useRouter()
@@ -333,5 +333,13 @@ export default function FindBinPage() {
                 data={successData || { pointsEarned: 50, co2Saved: 2.5, binName: "Bin" }}
             />
         </div>
+    )
+}
+
+export default function FindBinPage() {
+    return (
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><Skeleton className="w-full h-full" /></div>}>
+            <FindBinPageContent />
+        </Suspense>
     )
 }
