@@ -187,11 +187,6 @@ export function ThemeProvider({
     return () => window.removeEventListener("storage", handleStorageChange)
   }, [storageKey])
 
-  // Don't render until theme is loaded to prevent hydration mismatch
-  if (!isLoaded) {
-    return <>{children}</>
-  }
-
   const value: ThemeContextType = {
     theme,
     resolvedTheme,
