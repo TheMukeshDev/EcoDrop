@@ -133,6 +133,14 @@ export async function POST(request: Request) {
             totalCO2 += co2Saved
         }
 
+        // Validate that at least one valid item was processed
+        if (totalItems === 0 || transactions.length === 0) {
+            return NextResponse.json({
+                success: false,
+                error: "No valid items to recycle. Please select at least one item."
+            }, { status: 400 })
+        }
+
         // 6. Update user stats atomically
         await User.findByIdAndUpdate(user._id, {
             $inc: {

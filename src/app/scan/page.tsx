@@ -23,6 +23,13 @@ export default function ScanPage() {
     const videoRef = useRef<HTMLVideoElement>(null)
     const [stream, setStream] = useState<MediaStream | null>(null)
 
+    // Check authentication
+    useEffect(() => {
+        if (!user) {
+            router.push("/auth/login?redirect=/scan")
+        }
+    }, [user, router])
+
     // Start Camera for Product Scan
     useEffect(() => {
         if (mode === "product_scan") {
@@ -154,7 +161,7 @@ export default function ScanPage() {
                 <div className="flex flex-col gap-4 w-full max-w-md mt-8">
                     <button
                         onClick={() => setMode("product_scan")}
-                        className="flex items-center justify-between bg-gradient-to-r from-primary to-green-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all group"
+                        className="flex items-center justify-between bg-linear-to-r from-primary to-green-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all group"
                     >
                         <div className="flex items-center gap-4">
                             <div className="bg-white/20 p-3 rounded-xl">
@@ -190,7 +197,7 @@ export default function ScanPage() {
 
             {/* Product Camera Mode */}
             {mode === "product_scan" && (
-                <div className="w-full max-w-md bg-black rounded-3xl overflow-hidden shadow-2xl relative aspect-[3/4]">
+                <div className="w-full max-w-md bg-black rounded-3xl overflow-hidden shadow-2xl relative aspect-3/4">
                     <video
                         ref={videoRef}
                         autoPlay
@@ -218,7 +225,7 @@ export default function ScanPage() {
 
             {/* Bin QR Scanner Mode */}
             {mode === "bin_scan" && (
-                <div className="w-full max-w-md h-[400px] bg-black rounded-3xl overflow-hidden relative">
+                <div className="w-full max-w-md h-400 bg-black rounded-3xl overflow-hidden relative">
                     <QRScanner
                         onScan={handleQRScan}
                         onError={(error) => toast.error(error)}

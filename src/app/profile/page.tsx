@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { User, Settings, LogOut, Bell, Shield, Wallet, Share2 } from "lucide-react"
@@ -8,8 +9,16 @@ import { useAuth } from "@/context/auth-context"
 import { useTranslation } from "@/context/language-context"
 
 export default function ProfilePage() {
+    const router = useRouter()
     const { user, logout } = useAuth()
     const { t } = useTranslation()
+
+    // Check authentication
+    useEffect(() => {
+        if (!user) {
+            router.push("/auth/login?redirect=/profile")
+        }
+    }, [user, router])
 
     const handleShare = () => {
         if (navigator.share) {

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Gift, TrendingUp, ShieldCheck, Loader2 } from "lucide-react"
@@ -17,6 +18,7 @@ interface IReward {
 }
 
 export default function RewardsPage() {
+    const router = useRouter()
     const { user, updateUser } = useAuth() // Use updateUser instead of setUser
     const [rewards, setRewards] = useState<IReward[]>([])
     const [loading, setLoading] = useState(true)
@@ -25,6 +27,12 @@ export default function RewardsPage() {
     const [view, setView] = useState<"rewards" | "leaderboard">("rewards")
 
     useEffect(() => {
+        // Redirect to login if not authenticated
+        if (!user) {
+            router.push("/auth/login?redirect=/rewards")
+            return
+        }
+
         async function fetchRewards() {
             try {
                 const res = await fetch("/api/rewards")
@@ -93,7 +101,7 @@ export default function RewardsPage() {
             <h1 className="text-3xl font-bold">Rewards</h1>
 
             {/* Points Card */}
-            <Card className="bg-gradient-to-br from-yellow-400 to-orange-500 border-none text-white shadow-lg overflow-hidden relative">
+            <Card className="bg-linear-to-br from-yellow-400 to-orange-500 border-none text-white shadow-lg overflow-hidden relative">
                 <div className="absolute top-0 right-0 p-8 opacity-20 transform translate-x-4 -translate-y-4">
                     <Gift className="w-32 h-32" />
                 </div>

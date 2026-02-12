@@ -4,9 +4,9 @@ import mongoose from "mongoose"
 config({ path: ".env.local" })
 config({ path: ".env" })
 
-import Bin from "../src/models/Bin"
-import User from "../src/models/User"
-import Reward from "../src/models/Reward"
+import Bin from "../src/models/Bin.ts"
+import User from "../src/models/User.ts"
+import Reward from "../src/models/Reward.ts"
 
 const MONGODB_URI = process.env.MONGODB_URI
 
@@ -48,6 +48,7 @@ async function seed() {
             { name: "Phaphamau Bridge", lat: 25.5034, lng: 81.8576 },
             { name: "Jhunsi", lat: 25.4312, lng: 81.9126 },
             { name: "Bamrauli Airport", lat: 25.4419, lng: 81.7456 },
+            {name:"test location",lat:25.4287377, lng: 82.2564541}
         ]
 
         const bins = PRAYAGRAJ_LOCATIONS.map((loc) => ({

@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef, Suspense } from "react"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/auth-context"
 import { useUserLocation } from "@/hooks/use-user-location"
 import { useEWDropVerification } from "@/hooks/use-ew-drop-verification"
 import { detectCityFromCoordinates } from "@/lib/city-detection"
@@ -15,7 +17,7 @@ import { MapPin, Search, Mic } from "lucide-react"
 import { IBin } from "@/models/Bin"
 import { toast } from "sonner"
 import { useTranslation } from "@/context/language-context"
-import { useSearchParams, useRouter } from "next/navigation"
+import { useSearchParams, useRouter as useNextRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 
 // Fix for type mismatch between Mongoose Document and Client JSON
@@ -24,7 +26,16 @@ type ClientBin = Omit<IBin, "_id"> & { _id: string }
 function FindBinPageContent() {
     const { t } = useTranslation()
     const searchParams = useSearchParams()
+    const nextRouter = useNextRouter()
     const router = useRouter()
+    const { user } = useAuth()
+
+    // Check authentication
+    useEffect(() => {
+        if (!user) {
+            nextRouter.push("/auth/login?redirect=/find-bin")
+        }
+    }, [user, nextRouter])
 
     // SAFE HYDRATION: Initialize only with Search Params (Server Safe)
     const [isDropFlow, setIsDropFlow] = useState(searchParams.get("dropFlow") === "true")
