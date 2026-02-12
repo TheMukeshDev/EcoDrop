@@ -35,7 +35,6 @@ async function seed() {
         await Reward.deleteMany({})
 
         console.log("Seeding Bins...")
-        console.log("Seeding Bins...")
 
         const PRAYAGRAJ_LOCATIONS = [
             { name: "Civil Lines Main Market", lat: 25.4526, lng: 81.8340 },
@@ -48,13 +47,15 @@ async function seed() {
             { name: "Phaphamau Bridge", lat: 25.5034, lng: 81.8576 },
             { name: "Jhunsi", lat: 25.4312, lng: 81.9126 },
             { name: "Bamrauli Airport", lat: 25.4419, lng: 81.7456 },
-            {name:"test location",lat:25.4287377, lng: 82.2564541}
+            { name: "test bin location", lat: 25.4287377, lng: 82.2564541 }
         ]
 
         const bins = PRAYAGRAJ_LOCATIONS.map((loc) => ({
             name: `${loc.name} E-Bin`,
+            address: `${loc.name}, Prayagraj`,
             latitude: loc.lat,
             longitude: loc.lng,
+            qrCode: `BIN-PRJ-${Date.now().toString().slice(-3)}`,
             acceptedItems: [
                 randomElement(ITEMS),
                 randomElement(ITEMS),
