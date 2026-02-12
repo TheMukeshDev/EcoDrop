@@ -72,6 +72,29 @@ export async function GET(request: NextRequest) {
                     status: "operational"
                 },
                 {
+
+                    name: "Ghamaha, Uttar Pradesh Bin",
+                    address: "Ghamaha, Near Bus Stop, Prayagraj",
+                    city: "Prayagraj",
+                    latitude: 25.4286196,
+                    longitude:  82.2564493,
+                    qrCode: "BIN-PRJ-004",
+                    acceptedItems: ["mobile", "accessories", "battery"],
+                    fillLevel: 75,
+                    status: "operational"
+                },
+                {
+                    name: "Radhe Motor E-Waste Bin",
+                    address: "Motor,Near SantiPuram, Prayagraj",
+                    city: "Prayagraj",
+                    latitude: 25.5283335,
+                    longitude: 81.8478447,
+                    qrCode: "BIN-PRJ-003",
+                    acceptedItems: ["all"],
+                    fillLevel: 50,
+                    status: "operational"
+                },
+                {
                     name: "Phaphamau Market Bin",
                     address: "Phaphamau Main Market, Prayagraj",
                     city: "Prayagraj",
