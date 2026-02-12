@@ -174,6 +174,13 @@ function LoginContent() {
                         {t("sign_up")}
                     </Link>
                 </p>
+
+                {/* Forgot Password Link */}
+                <p className="text-center mt-3">
+                    <Link href="/auth/forgot-password" className="text-sm text-green-600 dark:text-green-400 font-medium hover:underline transition-colors">
+                        Forgot Password?
+                    </Link>
+                </p>
             </motion.div>
         </div >
     )

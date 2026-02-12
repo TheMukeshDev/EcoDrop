@@ -11,6 +11,8 @@ export interface IUser extends Document {
     points: number
     suspiciousFlags: string[]
     password?: string
+    resetPasswordOTP?: string
+    resetPasswordOTPExpiresAt?: Date
     createdAt: Date
     updatedAt: Date
 }
@@ -26,6 +28,8 @@ const UserSchema = new Schema<IUser>({
     totalCO2Saved: { type: Number, default: 0 },
     points: { type: Number, default: 0 },
     suspiciousFlags: { type: [String], default: [] },
+    resetPasswordOTP: { type: String, select: false },
+    resetPasswordOTPExpiresAt: { type: Date, select: false },
 }, {
     timestamps: true
 })

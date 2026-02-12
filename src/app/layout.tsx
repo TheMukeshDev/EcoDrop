@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { AuthProvider } from "@/context/auth-context";
 import { LanguageProvider } from "@/context/language-context";
 import { ThemeProvider } from "@/context/theme-context";
+import { ThemeScript } from "@/components/theme-script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
         suppressHydrationWarning
@@ -41,7 +45,7 @@ export default function RootLayout({
           <AuthProvider>
             <LanguageProvider>
               <div className="min-h-screen flex justify-center md:bg-zinc-100 dark:md:bg-zinc-950 md:items-center md:py-8">
-                <div className="flex flex-col relative w-full max-w-md h-[100dvh] md:h-[850px] bg-background md:rounded-[2rem] md:shadow-2xl md:border overflow-hidden ring-1 ring-zinc-900/5 dark:ring-white/10">
+                <div className="flex flex-col relative w-full max-w-md h-dvh md:h-212.5 bg-background md:rounded-4xl md:shadow-2xl md:border overflow-hidden ring-1 ring-zinc-900/5 dark:ring-white/10">
                   <Header />
                   <main className="flex-1 w-full p-4 pt-6 overflow-y-auto scrollbar-hide pb-24">
                     {children}
@@ -64,7 +68,6 @@ export default function RootLayout({
           </AuthProvider>
         </ThemeProvider>
       </body>
- 
     </html>
   );
 }

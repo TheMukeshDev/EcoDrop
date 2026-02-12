@@ -39,7 +39,7 @@ export function ThemeToggle({
         type="button"
         className={`
           relative overflow-hidden rounded-full 
-          bg-gradient-to-br from-green-500/20 to-emerald-600/20
+          bg-linear-to-br from-green-500/20 to-emerald-600/20
           dark:from-green-600/30 dark:to-emerald-700/30
           border border-green-500/20 dark:border-green-400/20
           hover:scale-105 active:scale-95
@@ -57,7 +57,7 @@ export function ThemeToggle({
       >
         {/* Background glow effect */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 opacity-0"
+          className="absolute inset-0 bg-linear-to-br from-green-400 to-emerald-600 opacity-0"
           animate={{ opacity: isDark ? 0.1 : 0 }}
           transition={{ duration: 0.3 }}
         />
