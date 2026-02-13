@@ -5,6 +5,8 @@ import { ScanLog } from "@/models/ScanLog"
 import User from "@/models/User"
 import Bin from "@/models/Bin"
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: Request) {
     try {
         await dbConnect()

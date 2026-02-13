@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server"
 import dbConnect from "@/lib/mongodb"
 import CityRequest from "@/models/CityRequest"
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: NextRequest) {
     try {
         const { city, email } = await request.json()

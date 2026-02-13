@@ -3,6 +3,8 @@ import dbConnect from "@/lib/mongodb"
 import Bin from "@/models/Bin"
 import { SUPPORTED_CITIES } from "@/lib/constants"
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url)
@@ -148,6 +150,18 @@ export async function GET(request: NextRequest) {
                     acceptedItems: ["mobile", "accessories"],
                     fillLevel: 90,
                     status: "full"
+                }
+                ,{
+                    name :"Santipuram E-Waste Bin",
+                    address: "Santipuram, Near Bus Stop, Prayagraj",
+                    city: "Prayagraj",
+                    latitude: 25.525979,
+                    longitude: 81.8426996,
+                    qrCode: "BIN-PRJ-009",
+                    acceptedItems: ["mobile", "accessories", "battery"],
+                    fillLevel: 75,
+                    status: "operational"
+                
                 }
             ])
         }

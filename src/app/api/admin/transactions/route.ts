@@ -4,6 +4,8 @@ import dbConnect from "@/lib/mongodb"
 import Transaction from "@/models/Transaction"
 import AdminAuditLog from "@/models/AdminAuditLog"
 
+export const dynamic = 'force-dynamic'
+
 /**
  * GET /api/admin/transactions
  * Fetch transactions with pagination and filtering
