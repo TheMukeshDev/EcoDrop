@@ -25,7 +25,7 @@ export function MotionWrapper({
 }: MotionWrapperProps) {
     // Spring animation configuration for smooth, natural motion
     const springConfig = {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 60,
         damping: 15,
         mass: 1,
@@ -53,7 +53,6 @@ export function MotionWrapper({
                         opacity: 1,
                         transition: {
                             duration,
-                            ease: easing,
                         },
                     },
                 }
@@ -66,7 +65,6 @@ export function MotionWrapper({
                         scale: 1,
                         transition: {
                             duration,
-                            ease: easing,
                         },
                     },
                 }
@@ -79,7 +77,6 @@ export function MotionWrapper({
                         filter: "blur(0px)",
                         transition: {
                             duration,
-                            ease: easing,
                         },
                     },
                 }
@@ -93,7 +90,6 @@ export function MotionWrapper({
                         scale: 1,
                         transition: {
                             duration,
-                            ease: easing,
                         },
                     },
                 }
@@ -120,7 +116,6 @@ export function MotionWrapper({
                         y: 0,
                         transition: {
                             duration,
-                            ease: easing,
                         },
                     },
                 }
@@ -139,9 +134,6 @@ export function MotionWrapper({
             className={cn("w-full", className)}
         >
             {children}
-        </motion.div>
-    )
-}
         </motion.div>
     )
 }
